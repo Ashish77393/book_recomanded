@@ -20,7 +20,7 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.view,name='home'),
-    path('/aboutus',views.about,name='aboutus'),
-    path('/recomanded',views. recommanded,name="recommanded"),
+    path('aboutus',views.about,name='aboutus'),
+    path('recomanded',views. recommanded,name="recommanded"),
     path('details/<int:book_id>/', views.book_details, name='book_details')
 ]
