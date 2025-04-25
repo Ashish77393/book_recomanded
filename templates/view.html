@@ -14,7 +14,14 @@
     />
   </head>
   <body>
-    <h1 style="color: black; text-align: center; font-size: 70px">
+    <h1
+      style="
+        color: black;
+        text-align: center;
+        font-size: 70px;
+        margin-top: 90px;
+      "
+    >
       Book Recommendation System
     </h1>
 
@@ -22,7 +29,7 @@
       <!-- Loop over the first 50 items passed from the view -->
       {% for title, author, img, rating in items %}
       <!-- Only display the first 50 movies -->
-      {% if forloop.counter <= 50 %}
+      {% if forloop.counter <= 20 %}
       <div class="inner">
         <img
           src="{{ img }}"

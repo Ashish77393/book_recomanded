@@ -46,8 +46,26 @@ def recommanded(request):
             item.extend(list(temp_df.drop_duplicates('title')['title'].values))
             item.extend(list(temp_df.drop_duplicates('title')['author'].values))
             item.extend(list(temp_df.drop_duplicates('title')['Image-URL-S'].values))
+            item.extend(list(temp_df.drop_duplicates('title')['rating'].values))
             data.append(item)
         
         return render(request, 'booksugg.html', {'data': data})
     
     return render(request, 'booksugg.html')
+
+
+import pickle
+from django.shortcuts import render, get_object_or_404
+
+def book_details(request, book_id):
+    # Load the books from the pickle file
+    with open('books.pkl', 'rb') as f:
+        books = pickle.load(f)
+
+    # Find the book by ID
+    book = next((b for b in books if b["user_id"] == book_id), None)
+    
+    if book is None:
+        return render(request, '404.html', status=404)  # You might want a custom 404 page
+
+    return render(request, 'details.html', {'book': book})
