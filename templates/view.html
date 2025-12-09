@@ -1,52 +1,128 @@
-{% include "header.html" %} {% load static %}
+{% load static %} {% include "header.html" %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Book Recommendation System</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
     />
-  </head>
-  <body style="background-color: black">
-    <h1
-      style="
-        color: black;
-        text-align: center;
-        font-size: 70px;
-        margin-top: 90px;
-      "
-    >
-      Book Recommendation System
-    </h1>
 
-    <div class="moviecard">
-      <!-- Loop over the first 50 items passed from the view -->
+    <style>
+      body {
+        background: #0d0d0d;
+        color: #fff;
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 60px;
+        font-weight: 700;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        background: linear-gradient(90deg, #ffcc00, #ff9500);
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .book-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        padding: 0 40px 40px 40px;
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+      }
+
+      .book-card {
+        background: #111;
+        border-radius: 18px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 174, 0, 0.2);
+        cursor: pointer;
+      }
+
+      .book-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(255, 174, 0, 0.4);
+        border-color: #ffb300;
+      }
+
+      .book-card img {
+        width: 120px;
+        height: 170px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 12px;
+        box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
+      }
+
+      .book-card h4 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffc107;
+        margin-bottom: 5px;
+      }
+
+      .book-card p {
+        color: #ccc;
+        font-size: 14px;
+        margin: 3px 0;
+      }
+
+      .rating {
+        margin-top: 8px;
+        font-weight: 600;
+        color: #ffb300;
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 48px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .book-card img {
+          width: 100px;
+          height: 150px;
+        }
+        .book-card h4 {
+          font-size: 16px;
+        }
+        .book-card p {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>📚 Book Recommendation System</h1>
+
+    <div class="book-grid">
       {% for title, author, img, rating in items %}
       <!-- Only display the first 50 movies -->
       {% if forloop.counter <= 20 %}
-      <div class="inner">
-        <img
-          src="{{ img }}"
-          alt="Movie Image"
-          style="width: 100px; height: auto"
-        />
-        <h4 style="color: black">{{ author }}</h4>
-        <p>{{ title }}</p>
-        <p>Rating : {{ rating }}</p>
+      <div class="book-card">
+        <img src="{{ img }}" alt="Book Image" />
+        <h4>{{ title }}</h4>
+        <p>By: {{ author }}</p>
+        <p class="rating">⭐ {{ rating }}</p>
       </div>
       {% endif %} {% endfor %}
     </div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,32 +12,48 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <style>
+      /* Header Styles */
+      .header {
+        background: linear-gradient(90deg, #4b6cb7, #182848);
+        color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1030;
+      }
+      .header a.nav-link {
+        color: #fff;
+        font-weight: 500;
+        transition: color 0.3s, transform 0.2s;
+      }
+      .header a.nav-link:hover {
+        color: #ffd700; /* Gold highlight */
+        transform: scale(1.05);
+      }
+      .header a.nav-link.active {
+        border-bottom: 2px solid #ffd700;
+      }
+      .header span.fs-4 {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        letter-spacing: 1px;
+        color: #fff;
+      }
+    </style>
   </head>
   <body>
     <div class="container-fluid header fixed-top">
       <header
-        class="d-flex flex-wrap justify-content-center py-3 mb-0 border-bottom"
+        class="d-flex flex-wrap justify-content-between align-items-center py-3 px-4"
       >
         <a
           href="/"
-          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none"
+          class="d-flex align-items-center mb-3 mb-md-0 text-decoration-none"
         >
-          <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-          <span class="fs-4"
-            ><i style="font-weight: bold">Books-Recomanded-System</i></span
-          >
+          <span class="fs-4"><i>Books-Recomanded-System</i></span>
         </a>
 
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a
-              href="{% url 'home' %}"
-              class="nav-link active"
-              aria-current="page"
-              >Home</a
-            >
+            <a href="{% url 'home' %}" class="nav-link active">Home</a>
           </li>
           <li class="nav-item">
             <a href="{% url 'recommanded' %}" class="nav-link"
@@ -55,6 +71,7 @@
         </ul>
       </header>
     </div>
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
